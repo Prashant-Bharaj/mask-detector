@@ -15,12 +15,12 @@ class BoundaryBox extends StatelessWidget {
         return Stack(
           children: <Widget>[
             Positioned(
-              left: (screenW/4),
               bottom: -(screenH-80),
               width: screenW,
               height: screenH,
               child: Text(
                 "${re["label"]=='0 with_mask'?"Mask detected":"Mask not detected"} ${(re["confidence"] * 100).toStringAsFixed(0)}%",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   backgroundColor: Colors.white,
                   color:re["label"]=='0 with_mask'? Colors.green:Colors.red,
@@ -30,12 +30,12 @@ class BoundaryBox extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 30,
-              top: 30,
+              top: 20,
               width: screenW,
               height: screenH,
               child: Text(
-                "Detection only on veritcal camera feed",
+                "Detecting vertically only",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   backgroundColor: Colors.black,
                   color:Colors.purple,

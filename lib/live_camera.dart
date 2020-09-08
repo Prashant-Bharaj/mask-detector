@@ -31,14 +31,7 @@ class _FaceDetectionFromLiveCameraState
     _getAvailableCameras();
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    cameraController?.dispose();
-    interstitialAd.dispose();
-    super.dispose();
 
-  }
 
   void setRecognitions(List recognitions, int height, int width) {
     setState(() {
@@ -85,7 +78,7 @@ class _FaceDetectionFromLiveCameraState
 
   //Targeting info per the native AdMob API.
   static MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-      keywords: <String>['apps', 'games', 'news'], testDevices: <String>[]);
+      keywords: <String>['apps', 'games', 'news'], testDevices: <String>["F72F63845135912CF76C7742C1A37509"]);
 
   InterstitialAd myInterstitial() {
     return InterstitialAd(
@@ -134,6 +127,13 @@ class _FaceDetectionFromLiveCameraState
     }
   }
 
+  @override
+  void dispose() {
+    cameraController?.dispose();
+    interstitialAd.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +168,7 @@ class _FaceDetectionFromLiveCameraState
                 _recognitions == null? [] : _recognitions,
                 math.max(_imageHeight, _imageWidth),
                 math.min(_imageHeight, _imageWidth),
-                screen.height,
+                MediaQuery.of(context).size.height,
                 screen.width,
               ),
             ],

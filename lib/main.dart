@@ -16,9 +16,15 @@ class CoronaVirusTracker extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      theme: ThemeData.light().copyWith(
+        primaryColor: Colors.blue,
+        dividerTheme: DividerThemeData(color: Colors.black54),
+        iconTheme: IconThemeData(color: Colors.black),
+      ),
+      darkTheme: ThemeData.dark().copyWith(
+        primaryColor: Colors.blueGrey.shade900,
+        dividerTheme: DividerThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       home: MyHomePage(),
     );
@@ -58,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   //Targeting info per the native AdMob API.
   static MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-      keywords: <String>['apps', 'games', 'news'], testDevices: <String>[]);
+      keywords: <String>['apps', 'games', 'news'], testDevices: <String>["F72F63845135912CF76C7742C1A37509"]);
 
   InterstitialAd myInterstitial() {
     return InterstitialAd(
@@ -80,11 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  @override
-  void dispose() {
-    interstitialAd?.dispose();
-    super.dispose();
-  }
+
 
   Future<void> share() async {
     await FlutterShare.share(
@@ -145,6 +147,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void dispose() {
+    interstitialAd?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
@@ -201,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
               Divider(
-                height: 3, //Todo color: Colors.black,
+                height: 3,
               ),
               ListTile(
                 title: Text('About the developer',),
